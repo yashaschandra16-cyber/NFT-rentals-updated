@@ -1,0 +1,654 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #0d0d0d;
+  color: #f0f0f0;
+  line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #111;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #00bfff;
+}
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+.navbar a {
+  text-decoration: none;
+  color: #f0f0f0;
+  transition: color 0.3s ease;
+}
+.navbar a:hover {
+  color: #00bfff;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 6rem 2rem;
+  background: linear-gradient(to right, #1a1a1a, #222);
+}
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #00bfff;
+}
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+.hero .buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  background: #00bfff;
+  color: #0d0d0d;
+  transition: background 0.3s ease;
+}
+.btn:hover {
+  background: #009acd;
+}
+.btn.secondary {
+  background: #444;
+  color: #fff;
+}
+.btn.secondary:hover {
+  background: #666;
+}
+
+/* Features */
+.features {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+.features h2 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #00bfff;
+}
+.feature-list {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.feature {
+  background: #111;
+  padding: 1.5rem;
+  border-radius: 8px;
+  width: 250px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 191, 255, 0.2);
+}
+.feature h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 1.5rem;
+  background: #111;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+}
+/* Logo container */
+.logo {
+  display: flex;
+  align-items: end;   /* vertically center image + text */
+  gap: 0.5rem;           /* space between image and text */
+}
+
+/* Logo image */
+.picture_logo {
+     height: 250px;
+  width: auto;
+  object-fit: contain;
+  background-size: cover;
+  border-radius: 130px;
+}
+/* Browse Page */
+.browse {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.browse h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #00bfff;
+}
+
+.browse p {
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  color: #ccc;
+}
+
+.search-filter {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.search-filter input,
+.search-filter select {
+  padding: 0.6rem;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+}
+
+.nft-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  background: #111;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 12px rgba(0, 191, 255, 0.2);
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+.card img {
+  
+  height: 250px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+.card h3 {
+  margin-bottom: 0.5rem;
+}
+.card p {
+  margin-bottom: 1rem;
+  color: #00bfff;
+}
+.picture_browser{
+  height:200px;
+ background-size: cover;
+ object-fit: contain;
+
+}
+
+
+/* NFT Detail Page */
+.detail {
+  padding: 4rem 2rem;
+  display: flex;
+  justify-content: center;
+  background-size: cover;
+}
+
+.detail-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  background: #111;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 900px;
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.2);
+}
+
+.detail-img {
+  flex: 1 1 300px;
+  border-radius: 10px;
+  width: 200px;
+  height: 300px;
+}
+
+.detail-info {
+  flex: 1 1 400px;
+}
+
+.detail-info h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #00bfff;
+}
+
+.detail-info .price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #00bfff;
+}
+
+.detail-info p {
+  margin-bottom: 1rem;
+  color: #ccc;
+}
+
+.detail-info h3 {
+  margin: 1rem 0 0.5rem;
+  color: #fff;
+}
+
+.detail-info select {
+  padding: 0.5rem;
+  margin: 0.5rem 0 1.5rem;
+  border: none;
+  border-radius: 5px;
+}
+.back-btn {
+  margin-bottom: 1rem;
+}
+
+.back-btn .btn.secondary {
+  background: #333;
+  color: #fff;
+  font-size: 0.9rem;
+  padding: 0.6rem 1rem;
+}
+
+.back-btn .btn.secondary:hover {
+  background: #555;
+}
+.return_button {
+    margin: 10px;
+}
+.delete-btn {
+  margin-top: 8px;
+  width: 100%;
+}
+/* Dashboard Page */
+.dashboard {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.dashboard h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #00bfff;
+}
+
+.dashboard-section {
+  margin-bottom: 4rem;
+}
+
+.dashboard-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #00bfff;
+}
+/* About Page */
+.about {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.about h1 {
+  font-size: 2.5rem;
+  color: #00bfff;
+  margin-bottom: 1rem;
+}
+
+.about p {
+  margin-bottom: 2rem;
+  color: #ccc;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.team-grid {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.team-member {
+  background: #111;
+  padding: 1rem;
+  border-radius: 10px;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 0 12px rgba(0, 191, 255, 0.2);
+}
+
+.team-member img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.team-member h3 {
+  margin-bottom: 0.3rem;
+  color: #00bfff;
+}
+
+.team-member p {
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+/* Contact Form */
+.contact-form {
+  max-width: 500px;
+  margin: 0 auto;
+  background: #111;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(0, 191, 255, 0.2);
+  text-align: left;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.7rem;
+  margin-bottom: 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+/* ============================
+   LIST PAGE (list.html) STYLES
+   ============================ */
+
+/* Container around form */
+.list-form-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background: #111;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 191, 255, 0.08);
+}
+
+/* Form rows */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.form-row .full {
+  grid-column: 1 / -1;
+}
+
+/* Labels */
+label {
+  display: block;
+  font-size: 0.92rem;
+  color: #bfc7cc;
+  margin-bottom: 0.3rem;
+}
+
+/* Inputs & textarea */
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.65rem;
+  border-radius: 8px;
+  border: none;
+  background: #1a1a1a;
+  color: #f1f1f1;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border: 1px solid #00bfff;
+}
+
+/* Button */
+button[type="submit"] {
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  background: linear-gradient(90deg, #06b6ff, #6a11cb);
+  color: #fff;
+  transition: opacity 0.2s ease;
+}
+
+button[type="submit"]:hover {
+  opacity: 0.9;
+}
+
+/* Section below form (preview list) */
+#newNftContainer {
+  margin-top: 2rem;
+}
+/* ============================
+   LIST PAGE PREVIEW CARDS
+   ============================ */
+
+/* Wrapper for each NFT card */
+#newNftContainer .card-wrapper {
+  flex: 1 1 280px;
+  margin: 1rem;
+  background: #111;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#newNftContainer .card-wrapper:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Image styling */
+#newNftContainer .card-inner img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;   /* full image visible */
+  background: #000;      /* fill space around transparent images */
+  padding: 8px;
+}
+
+/* Title */
+#newNftContainer .card-inner h3 {
+  font-size: 1.2rem;
+  color: #00bfff;
+  margin: 0.6rem 0;
+  text-align: center;
+}
+
+/* Description */
+#newNftContainer .card-inner .desc {
+  font-size: 0.95rem;
+  color: #ccc;
+  margin: 0.5rem 1rem;
+  text-align: center;
+}
+
+/* Price */
+#newNftContainer .card-inner .price {
+  font-weight: bold;
+  color: #fff;
+  margin: 0.5rem 0;
+  text-align: center;
+}
+
+/* Action buttons */
+#newNftContainer .card-inner .actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 0.8rem;
+}
+/* ============================
+   NFT CARD STYLE (List, Browse, Dashboard)
+   ============================ */
+
+/* Container grid */
+.nft-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* Wrapper for each NFT card */
+.card-wrapper {
+  flex: 1 1 280px;
+  max-width: 280px;
+  background: #111;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-wrapper:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Inner card content */
+.card-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+/* Image */
+.card-inner img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain; /* full image visible */
+  background: #000;
+  padding: 8px;
+  border-bottom: 1px solid #333;
+}
+
+/* Title */
+.card-inner h3 {
+  font-size: 1.2rem;
+  color: #00bfff;
+  margin: 0.6rem 0 0.3rem;
+  text-align: center;
+}
+
+/* Description */
+.card-inner .desc {
+  font-size: 0.95rem;
+  color: #ccc;
+  margin: 0.3rem 1rem;
+  text-align: center;
+}
+
+/* Price */
+.card-inner .price {
+  font-weight: bold;
+  color: #fff;
+  margin: 0.3rem 0;
+  text-align: center;
+}
+
+/* Actions */
+.card-inner .actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 0.6rem 0;
+}
+
+/* Buttons */
+.btn-primary {
+  padding: 0.4rem 0.8rem;
+  background: #00bfff;
+  color: #111;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background: #009fd4;
+}
+
+.btn-outline {
+  padding: 0.4rem 0.8rem;
+  background: transparent;
+  color: #00bfff;
+  border: 2px solid #00bfff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-outline:hover {
+  background: #00bfff;
+  color: #111;
+}
+/* ============================
+   WALLET PAGE
+   ============================ */
+.wallet-box {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #111;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.wallet-box p {
+  color: #ccc;
+  font-size: 1rem;
+  margin: 0.6rem 0;
+}

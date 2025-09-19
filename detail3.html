@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NFT Detail - NFT Rentals</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">NFT Rentals</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="browse.html">Browse NFTs</a></li>
+        <li><a href="list.html">List NFT</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="wallet.html" class="active">Wallet</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- NFT Detail Section -->
+  <section class="detail">
+    <div class="detail-card">
+      
+
+      <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/3b697a01-7fbf-4265-9ed6-0020248172d3.png" class="detail-img" />
+      <div class="detail-info">
+        <h1>Exclusive Event Pass </h1>
+        <p class="price">0.01 ETH / day</p>
+        <p>
+         This NFT grants temporary access to premium events and shows. Rent it and enjoy exclusive experiences.
+        </p>
+
+        <h3>Owner</h3>
+        <p>@Organizer007</p>
+
+        <h3>Rental Options</h3>
+        <label for="duration">Select Duration:</label>
+        <select id="duration">
+          <option value="1">1 Day</option>
+          <option value="7">1 Week</option>
+          <option value="30">1 Month</option>
+        </select>
+
+        <button class="btn rent-btn return_button" onclick="rentNFT(); rentNFTOnChain(2, document.getElementById('duration').value, 0.01)">Rent Now</button>
+
+      </div>
+      <!-- Back Button -->
+      <div class="back-btn">
+        <a href="browse.html" class="btn secondary">← Back to Browse</a>
+      </div>
+    </div>
+    
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 NFT Rentals | Built for Hackathon 🚀</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <!-- Added blockchain scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <script src="blockchain.js"></script>
+
+</body>
+</html>

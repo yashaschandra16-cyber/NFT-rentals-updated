@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browse NFTs - NFT Rentals</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">NFT Rentals</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="browse.html" class="active">Browse NFTs</a></li>
+        <li><a href="list.html">List NFT</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="wallet.html" class="active">Wallet</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Browse Section -->
+  <section class="browse">
+    <h1>Available NFTs for Rent</h1>
+    <p>Explore NFTs across games, art, and events.</p>
+
+    <!-- Search and Filter -->
+    <div class="search-filter">
+      <input type="text" id="searchInput" placeholder="Search NFTs..." />
+      <select id="filterSelect">
+        <option value="all">All Categories</option>
+        <option value="games">Games</option>
+        <option value="art">Art</option>
+        <option value="events">Events</option>
+      </select>
+    </div>
+
+    <!-- NFT Grid -->
+    <div class="nft-grid" id="nftGrid">
+      
+      <div class="card">
+        <img src=" https://user-gen-media-assets.s3.amazonaws.com/gemini_images/d4ca0930-b447-4a1a-9e56-30eb25a29611.png" class="picture_browser"  />
+        <h3>Epic Gamer Skin</h3>
+        <p>0.05 ETH / day</p>
+        <a href="detail.html" class="btn">View Details</a>
+      </div>
+      <div class="card">
+        <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/894ac179-fd9a-4665-8f84-5a3fa086d9e0.png"  class="picture_browser"   />
+        <h3>Rare Digital Artwork</h3>
+        <p>0.1 ETH / day</p>
+        <a href="detail2.html" class="btn">View Details</a>
+      </div>
+      <div class="card">
+        <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/3b697a01-7fbf-4265-9ed6-0020248172d3.png"  class="picture_browser" />
+        <h3>Concert Weekend Pass</h3>
+        <p>0.08 ETH / day</p>
+        <a href="detail3.html" class="btn">View Details</a>
+      </div>
+      <div class="container">
+  <div class="row g-4" id="nftContainer">
+    <!-- NFTs will be loaded here dynamically -->
+  </div>
+</div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 NFT Rentals | Built for Hackathon 🚀</p>
+  </footer>
+
+  
+ <script src="script.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+<script src="blockchain.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dashboard - NFT Rentals</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="assets/logo.png" alt="logo" style="height:44px" onerror="this.style.display='none'"/>
+      <span class="logo-text">NFT Rentals</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="browse.html">Browse NFTs</a></li>
+        <li><a href="list.html">List NFT</a></li>
+        <li><a href="dashboard.html" class="active">Dashboard</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Heading -->
+  <section class="section-title">
+    <h1 style="margin: 10px;font-size: 35px;color: #00bfff;">Your Dashboard</h1>
+    <p class="text-muted" style="margin: 10px;font-size: 25px;color: aquamarine;">Manage your listings and rentals.</p>
+  </section>
+
+  <!-- My Listings -->
+  <div class="container">
+    <h2 style="color:#00bfff;margin: 10px;font-size: 25px;">My Listings</h2>
+    <div class="nft-grid" id="myListings"></div>
+  </div>
+
+  <!-- My Rentals -->
+  <div class="container">
+    <h2 style="color:#00bfff">My Rentals</h2>
+    <div class="nft-grid" id="myRentals"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p style="text-align:center">© 2025 NFT Rentals</p>
+  </footer>
+
+  <!-- JS -->
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const myListings = document.getElementById("myListings");
+    const myRentals = document.getElementById("myRentals");
+
+    let saved = JSON.parse(localStorage.getItem("nfts")) || [];
+    let rentals = JSON.parse(localStorage.getItem("rentals")) || [];
+
+    // ✅ Render card helper
+    function renderCard(nft, parent, showActions = false) {
+      const wrapper = document.createElement("div");
+      wrapper.className = "card-wrapper";
+      wrapper.innerHTML = `
+        <div class="card-inner" data-id="${nft.id}">
+          <img src="${nft.img}" alt="${nft.title}" 
+               onerror="this.src='https://via.placeholder.com/400x300?text=No+Image'">
+          <h3>${nft.title}</h3>
+          <p class="desc">${nft.desc}</p>
+          <p class="price">${nft.price} ETH / day</p>
+          <div class="actions">
+            ${
+              showActions
+                ? `<button class="btn-primary btn-edit" data-id="${nft.id}">Edit</button>
+                   <button class="btn-outline btn-delete" data-id="${nft.id}">Delete</button>`
+                : `<button class="btn-outline btn-return" data-id="${nft.id}">Return</button>`
+            }
+          </div>
+        </div>`;
+      parent.appendChild(wrapper);
+    }
+
+    // ✅ My Listings (only your NFTs)
+    const mine = saved.filter(x => x.owner === "You");
+    if (mine.length === 0) {
+      myListings.innerHTML = '<p class="text-muted">No listings yet. Add one from List page.</p>';
+    } else {
+      mine.slice().reverse().forEach(nft => renderCard(nft, myListings, true));
+    }
+
+    // ✅ My Rentals
+    if (rentals.length === 0) {
+      myRentals.innerHTML = '<p class="text-muted">No active rentals yet.</p>';
+    } else {
+      rentals.slice().reverse().forEach(nft => renderCard(nft, myRentals, false));
+    }
+
+    // ✅ Handle My Listings actions
+    myListings.addEventListener("click", (e) => {
+      const id = e.target.dataset.id;
+
+      if (e.target.classList.contains("btn-delete")) {
+        if (!confirm("Delete this NFT?")) return;
+        saved = saved.filter(x => x.id !== id);
+        localStorage.setItem("nfts", JSON.stringify(saved));
+        e.target.closest(".card-wrapper").remove();
+      }
+
+      if (e.target.classList.contains("btn-edit")) {
+        const nft = saved.find(x => x.id === id);
+        if (!nft) return;
+        localStorage.setItem("nft-edit", JSON.stringify(nft));
+        window.location.href = "list.html"; // redirect to edit form
+      }
+    });
+
+    // ✅ Handle My Rentals actions
+    myRentals.addEventListener("click", (e) => {
+      const id = e.target.dataset.id;
+      if (e.target.classList.contains("btn-return")) {
+        if (!confirm("Return this NFT?")) return;
+        rentals = rentals.filter(x => x.id !== id);
+        localStorage.setItem("rentals", JSON.stringify(rentals));
+        e.target.closest(".card-wrapper").remove();
+      }
+    });
+  });
+  </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Wallet - NFT Rentals</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="assets/logo.png" alt="logo" style="height:44px" onerror="this.style.display='none'"/>
+      <span class="logo-text">NFT Rentals</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="browse.html">Browse NFTs</a></li>
+        <li><a href="list.html">List NFT</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="wallet.html" class="active">Wallet</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Wallet Section -->
+  <section class="section-title">
+    <h1 style="color:#00bfff; text-align: center;font-weight: bolder; ">My Wallet</h1>
+    <p class="text-muted" style="color: rgb(0, 140, 255);text-align: center;">Manage your wallet connection and view details.</p>
+  </section>
+
+  <div class="container">
+    <div class="wallet-box">
+      <h2 style="color:#00bfff">Wallet Status</h2>
+      <p id="walletAddress">🔗 Not Connected</p>
+      <p id="walletBalance">💰 Balance: --</p>
+      <button id="connectBtn" class="btn-primary">Connect Wallet</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p style="text-align:center">© 2025 NFT Rentals</p>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    const connectBtn = document.getElementById("connectBtn");
+    const walletAddress = document.getElementById("walletAddress");
+    const walletBalance = document.getElementById("walletBalance");
+
+    connectBtn.addEventListener("click", () => {
+      // Fake wallet details
+      const fakeAddress = "0x" + Math.random().toString(16).substring(2, 10) + "..." + Math.random().toString(16).substring(2, 6);
+      const fakeBalance = (Math.random() * 5).toFixed(3);
+
+      walletAddress.textContent = `🔗 Address: ${fakeAddress}`;
+      walletBalance.textContent = `💰 Balance: ${fakeBalance} ETH`;
+      connectBtn.textContent = "Connected ✅";
+      connectBtn.disabled = true;
+    });
+     document.getElementById("connectBtn").addEventListener("click", connectWallet);
+  </script>
+
+  <!-- Ethers.js + Blockchain bridge -->
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <script src="blockchain.js"></script>
+  
+</body>
+</html>

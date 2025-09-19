@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>List Your NFT - NFT Rentals</title>
+
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="assets/logo.png" alt="logo" style="height:44px" onerror="this.style.display='none'"/>
+      <span class="logo-text">NFT Rentals</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="browse.html">Browse NFTs</a></li>
+        <li><a href="list.html" class="active">List NFT</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Page Heading -->
+  <section class="section-title">
+    <h1>List Your NFT</h1>
+    <p class="text-muted">Add your NFT for rental — it will appear in Browse and Dashboard.</p>
+  </section>
+
+  <!-- Form Section -->
+  <div class="container">
+    <div class="list-form-container">
+      <form id="nftForm" class="mb-4">
+        <div class="form-row">
+          <div>
+            <label for="nftTitle">NFT Title</label>
+            <input id="nftTitle" type="text" required />
+          </div>
+          <div>
+            <label for="nftPrice">Rental Price (ETH)</label>
+            <input id="nftPrice" type="number" step="0.0001" required />
+          </div>
+
+          <div class="full">
+            <label for="nftImage">NFT Image URL</label>
+            <input id="nftImage" type="text" placeholder="https://..." required />
+          </div>
+
+          <div class="full">
+            <label for="nftDesc">Description</label>
+            <textarea id="nftDesc" rows="3" required></textarea>
+          </div>
+
+          <div>
+            <label for="nftCategory">Category</label>
+            <select id="nftCategory">
+              <option value="games">Games</option>
+              <option value="art">Art</option>
+              <option value="events">Events</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div style="display:flex;align-items:end">
+            <button type="submit">Add NFT</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Preview Section -->
+  <div class="container">
+    <h2 style="color:#bcd3e6;margin-bottom:.8rem">Your NFT will appear below:</h2>
+    <div class="nft-grid" id="newNftContainer">
+      <!-- NFTs you add will show here instantly -->
+    </div>
+  </div>
+
+  <!-- ✅ JS directly added here -->
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("nftForm");
+    const container = document.getElementById("newNftContainer");
+
+    // Render NFT card below form
+    function renderCard(nft, parent) {
+      const wrapper = document.createElement("div");
+      wrapper.className = "card-wrapper";
+      wrapper.innerHTML = `
+        <div class="card-inner" data-id="${nft.id}">
+          <img src="${nft.img}" alt="${nft.title}" 
+               onerror="this.src='https://via.placeholder.com/400x300?text=No+Image'">
+          <h3>${nft.title}</h3>
+          <p class="desc">${nft.desc}</p>
+          <p class="price">${nft.price} ETH / day</p>
+          <div class="actions">
+            <a href="detail.html" class="btn-outline">View</a>
+            <button class="btn-primary btn-edit" data-id="${nft.id}">Edit</button>
+            <button class="btn-outline btn-delete" data-id="${nft.id}">Delete</button>
+          </div>
+        </div>
+      `;
+      parent.prepend(wrapper);
+    }
+
+    // Load existing NFTs (only those you own)
+    let saved = JSON.parse(localStorage.getItem("nfts")) || [];
+    saved.forEach(nft => {
+      if (nft.owner === "You") renderCard(nft, container);
+    });
+
+    // If editing, pre-fill form
+    const editData = JSON.parse(localStorage.getItem("nft-edit"));
+    if (editData) {
+      document.getElementById("nftTitle").value = editData.title;
+      document.getElementById("nftPrice").value = editData.price;
+      document.getElementById("nftImage").value = editData.img;
+      document.getElementById("nftDesc").value = editData.desc;
+      document.getElementById("nftCategory").value = editData.category;
+      localStorage.removeItem("nft-edit");
+      saved = saved.filter(x => x.id !== editData.id);
+      localStorage.setItem("nfts", JSON.stringify(saved));
+    }
+
+    // Handle form submit
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const title = document.getElementById("nftTitle").value.trim();
+      const price = document.getElementById("nftPrice").value.trim();
+      const img = document.getElementById("nftImage").value.trim();
+      const desc = document.getElementById("nftDesc").value.trim();
+      const category = document.getElementById("nftCategory").value;
+
+      if (!title || !price || !img || !desc) {
+        alert("⚠️ Please fill all fields.");
+        return;
+      }
+
+      const nftObj = {
+        id: Date.now().toString(),
+        title,
+        price,
+        img,
+        desc,
+        category,
+        owner: "You"
+      };
+
+      saved.push(nftObj);
+      localStorage.setItem("nfts", JSON.stringify(saved));
+
+      renderCard(nftObj, container);
+
+      form.reset();
+
+      alert("✅ NFT listed successfully! It is now visible in Browse and Dashboard.");
+    });
+
+    // Edit/Delete
+    container.addEventListener("click", (e) => {
+      const id = e.target.dataset.id;
+
+      if (e.target.classList.contains("btn-delete")) {
+        if (!confirm("Delete this NFT?")) return;
+        saved = saved.filter(x => x.id !== id);
+        localStorage.setItem("nfts", JSON.stringify(saved));
+        e.target.closest(".card-wrapper").remove();
+        return;
+      }
+
+      if (e.target.classList.contains("btn-edit")) {
+        const nft = saved.find(x => x.id === id);
+        if (!nft) return;
+        localStorage.setItem("nft-edit", JSON.stringify(nft));
+        location.reload();
+      }
+    });
+  });
+  </script>
+</body>
+</html>
